@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import {
+  Appearance,
   Modal,
   Platform,
   StyleSheet,
@@ -63,14 +64,14 @@ class DialogInput extends PureComponent{
         animationType={animationType}
         transparent={true}
         visible={this.props.isDialogVisible}
-      	onRequestClose={this.handleOnRequestClose}>
+        onRequestClose={this.handleOnRequestClose}>
         <View style={[styles.container, {...modalStyleProps}]}  >
           <TouchableOpacity style={styles.container} activeOpacity={1} onPress={this.handleOnCloseDialog}>
             <View style={[styles.modal_container, {...dialogStyleProps}]} >
               <View style={styles.modal_body} >
-                <Text style={styles.title_modal}>{title}</Text>
-                <Text style={[this.props.message ? styles.message_modal : {height:0} ]}>{this.props.message}</Text>
-                <TextInput style={styles.input_container}
+                <Text style={[styles.title_modal, {color: Appearance.getColorScheme() === 'dark' ? 'white' : 'black'}]}>{title}</Text>
+                <Text style={[this.props.message ? styles.message_modal : {height:0}, {color: Appearance.getColorScheme() === 'dark' ? 'white' : 'black'}]}>{this.props.message}</Text>
+                <TextInput style={[styles.input_container, {color: Appearance.getColorScheme() === 'dark' ? 'white' : 'black'}]}
                   autoCorrect={(textProps && textProps.autoCorrect==false)?false:true}
                   autoCapitalize={(textProps && textProps.autoCapitalize)?textProps.autoCapitalize:'none'}
                   clearButtonMode={(textProps && textProps.clearButtonMode)?textProps.clearButtonMode:'never'}
@@ -182,7 +183,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
         borderRadius: 5,
         paddingTop: 5,
-	      borderWidth: 1,
+        borderWidth: 1,
         borderColor: '#B0B0B0',
         paddingBottom: 5,
         paddingLeft: 10,
@@ -217,11 +218,11 @@ const styles = StyleSheet.create({
   divider_btn:{
     ...Platform.select({
       ios:{
-      	width: 1,
+        width: 1,
         backgroundColor: '#B0B0B0',
       },
       android:{
-	      width: 0
+        width: 0
       },
     }),
   },
@@ -247,8 +248,8 @@ const styles = StyleSheet.create({
         borderRightWidth: 5,
         borderColor: '#B0B0B0',
         padding: 10,
-	      height: 48,
-	      maxHeight: 48,
+        height: 48,
+        maxHeight: 48,
       },
       android: {
         textAlign:'right',
